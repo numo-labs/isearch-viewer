@@ -1,0 +1,42 @@
+@font-face {
+  font-family: ThomasHeadlineBold;
+  src: url('../../fonts/ThomasHeadline-Bold.otf');
+}
+
+.articleFooter {
+  background-color: #E9E5E0;
+  max-height: 130px;
+}
+
+.articleFooter .tagLabel {
+  font-family: ThomasHeadlineBold;
+  display: inline-block;
+  padding: 10px 25px;
+  background: white;
+  margin-right: 10px;
+  color: #666;
+}
+
+.articleFooter .addTagButton {
+  cursor: pointer;
+  background-color: #F39100;
+  display: inline-block;
+  border-radius: 100%;
+  color: #ffffff;
+  font-size: 1.25em;
+  width: 2em;
+  height: 2em;
+  line-height: 2em;
+  margin-top: 2.6em;
+  vertical-align: sub;
+}
+
+.articleFooter .addTagButton:hover {
+  background-color: #F37800;
+}
+
+@media (max-width: 750px) {
+  .articleFooter {
+    margin-bottom: 1em;
+  }
+}
