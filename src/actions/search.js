@@ -11,7 +11,8 @@ import {
   SAVE_BUCKET_ID,
   CLEAR_FEED,
   UPDATE_DISPLAYED_ITEMS,
-  SEARCH_COMPLETE
+  SEARCH_COMPLETE,
+  TAG_ADD_TAGS
 } from '../constants/actionTypes';
 
 import * as graphqlService from '../services/graphql';
@@ -19,6 +20,13 @@ import { formatQuery } from './helpers.js';
 // routing actionCreator
 import shuffle from 'shuffle-array';
 import timers from 'timers';
+
+export function addTags (tags) {
+  return {
+    type: TAG_ADD_TAGS,
+    tags: tags
+  };
+}
 /*
 * saves the error to the store to display an error message
 */
@@ -240,6 +248,7 @@ export function startSearch (a) {
     mixer = mixDataInput();
     const store = getState();
     const { search: { tags, fingerprint: clientId, socketConnectionId: connectionId } } = store;
+    console.log('STORE', store.search);
     if (tags.length > 0) {
       dispatch(busySearching(true));
       if (timer) clearTimeout(timer);

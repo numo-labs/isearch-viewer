@@ -23,13 +23,6 @@ class SearchResults extends Component {
     this.mapItems = this.mapItems.bind(this);
     this.getRelatedContent = this.getRelatedContent.bind(this);
   }
-  shouldComponentUpdate (nextProps) {
-    if (nextProps.items.length === this.props.items.length) {
-      return false;
-    } else {
-      return true;
-    }
-  }
 
   handleVisibility (isVisible, item) {
     if (!dataLayer || !isVisible) {
@@ -135,7 +128,6 @@ class SearchResults extends Component {
               onClick={() => { console.log('ITEM CLICKED', item); }}
             >
               <ArticleTile
-                className={viewedArticles.indexOf(item.tile.id) > -1 ? 'visited' : ''}
                 {...item}
               />
             </div>
@@ -167,7 +159,7 @@ class SearchResults extends Component {
 
   getRelatedContent () {
     const {
-      items,
+      displayedItems: items,
       searchComplete,
       feedEnd
     } = this.props;
@@ -195,9 +187,10 @@ class SearchResults extends Component {
   }
 
   render () {
+    console.log('PROPS', this.props);
     const {
       searchComplete,
-      items
+      displayedItems: items
     } = this.props;
     const searchItems = items.filter(item => !item.related);
     const hideGridStyle = {

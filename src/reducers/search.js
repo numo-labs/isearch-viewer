@@ -4,14 +4,9 @@ import {
   RECEIVE_SEARCH_RESULT,
   BUSY_SEARCHING,
   TAG_REMOVE_TAG,
-  TAG_ADD_SINGLE_TAG,
-  RESET_TAGS,
   TILES_REMOVE_TILE,
   SET_SEARCH_STRING,
   SEARCH_ERROR,
-  SET_AUTOCOMPLETE_ERROR,
-  SET_AUTOCOMPLETE_OPTIONS,
-  SET_AUTOCOMPLETE_IN_SEARCH,
   CLEAR_SEARCH_STRING,
   SAVE_SEARCH_RESULT_ID,
   SAVE_SOCKET_CONNECTION_ID,
@@ -19,12 +14,14 @@ import {
   SAVE_BUCKET_ID,
   CLEAR_FEED,
   UPDATE_DISPLAYED_ITEMS,
-  RECEIVE_RELATED_RESULT,
-  SEARCH_COMPLETE
+  SEARCH_COMPLETE,
+  TAG_ADD_TAGS
 } from '../constants/actionTypes';
 
 import union from 'lodash.union';
 import uniqBy from 'lodash.uniqby';
+import moment from 'moment';
+import departOnFriday from '../utils/departure-day-format';
 
 export const initialState = {
   fingerprint: '',
@@ -33,10 +30,21 @@ export const initialState = {
   resultId: '',
   displayedItems: [],
   items: [],
+  tags: [],
   loading: false,
   error: '',
   searchComplete: false, // set to false until a message is recieved from the web socket channel
-  feedEnd: false
+  feedEnd: false,
+  numberOfChildren: '0',
+  numberOfAdults: '2',
+  childAge1: '2 Barns alder',
+  childAge2: '4 Barns alder',
+  childAge3: '0 Barns alder',
+  childAge4: '0 Barns alder',
+  departureAirport: 'Copenhagen - CPH',
+  duration: '1 uge',
+  departureDate: departOnFriday(moment().add(3, 'months')).format('YYYY-MM-DD'),
+  passengerBirthdays: [],
 };
 
 export default function search (state = initialState, action) {
@@ -56,11 +64,6 @@ export default function search (state = initialState, action) {
         displayedItems: display,
         loading: false,
         error: ''
-      };
-    case RECEIVE_RELATED_RESULT:
-      return {
-        ...state,
-        relatedItems: state.relatedItems.concat(action.items)
       };
     case UPDATE_DISPLAYED_ITEMS:
       return {
@@ -88,15 +91,11 @@ export default function search (state = initialState, action) {
         loading: false,
         displayedItems: state.displayedItems.length === 0 ? state.relatedItems : state.displayedItems
       };
-    // case TAG_ADD_TAGS:
-    //   /*
-    //   * use this action if there are an initial set of tags passed
-    //   * through when the page is first loaded
-    //   */
-    //   return {
-    //     ...state,
-    //     tags: action.tags
-    //   };
+    case TAG_ADD_TAGS:
+      return {
+        ...state,
+        tags: action.tags
+      };
     case SAVE_SEARCH_RESULT_ID:
       return {
         ...state,

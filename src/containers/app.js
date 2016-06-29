@@ -17,7 +17,7 @@ const actionCreatorBinder = actions => bindActionCreators(actions, store.dispatc
 export default class Root extends Component {
 
   componentWillMount () {
-    this.socket = websocketService.initialise(actionCreatorBinder);
+    this.socket = websocketService.initialise(actionCreatorBinder, this.props.tags);
   }
 
   componentWilUnmount () {

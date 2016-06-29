@@ -14,9 +14,7 @@
 export function formatQuery (store) {
   const {
      search: {
-      tags
-      },
-     travelInfo: {
+      tags,
       numberOfChildren,
       numberOfAdults,
       childAge1,

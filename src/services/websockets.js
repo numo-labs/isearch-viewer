@@ -14,12 +14,14 @@ const config = configure(configuration);
 * and binds it to dispatch
 */
 
-export function initialise (actionCreatorBinder) {
+export function initialise (actionCreatorBinder, tags) {
   const primus = new Primus(config.socketUrl);
   const {
     saveSearchResult,
     saveSocketConnectionId,
-    setSearchComplete
+    setSearchComplete,
+    addTags,
+    startSearch
   } = actionCreatorBinder(SearchResultActions);
   primus.on('data', function received (data) {
     // console.log('incoming socket data', data);
@@ -35,6 +37,8 @@ export function initialise (actionCreatorBinder) {
   primus.once('open', (data) => {
     primus.id((id) => {
       saveSocketConnectionId(id);
+      addTags(tags.map(tag =>  { return {id: tag}}));
+      startSearch();
       join(id);
       primus.on('reconnected', () => { join(id); });
     });

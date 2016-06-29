@@ -1,0 +1,13 @@
+body {
+  margin: 0;
+  background-color: #E9E5E0;
+}
+
+html, body {
+  width: auto !important;
+  overflow-x: hidden !important;
+}
+
+ul {
+  margin: 0
+}
