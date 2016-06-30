@@ -1,13 +1,16 @@
 body {
   margin: 0;
-  background-color: #E9E5E0;
+  background-color: #e46f6f;
 }
 
-html, body {
-  width: auto !important;
-  overflow-x: hidden !important;
+.title {
+  text-align: center;
+  font-size: 2em;
+  font-family: sans-serif;
+  margin: 1em;
 }
 
-ul {
-  margin: 0
+.app-container {
+  height: 50vh;
+  overflow-y: scroll;
 }

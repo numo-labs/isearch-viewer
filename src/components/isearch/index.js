@@ -5,10 +5,12 @@ import PackageTile from '../package-tile';
 import ArticleTile from '../article-tile';
 import VisibilitySensor from 'react-visibility-sensor';
 import DestinationTile from '../destination-tile';
-import { addAnalyticsImpression } from '../analytics-helper/index';
+// import { addAnalyticsImpression } from '../analytics-helper/index';
 
 const removeTileButton = require('../../assets/cancel.svg');
+const baseURL = 'http://inspirationalsearch.spies.dk/isearch/prod/#'
 import './style.css';
+
 
 const masonryOptions = {
   transitionDuration: '0.4s',
@@ -25,11 +27,12 @@ class SearchResults extends Component {
   }
 
   handleVisibility (isVisible, item) {
-    if (!dataLayer || !isVisible) {
-      return;
-    }
-    addAnalyticsImpression(item, dataLayer, impressionsTimestamp);
-    return;
+    return null;
+    // if (!dataLayer || !isVisible) {
+    //   return;
+    // }
+    // addAnalyticsImpression(item, dataLayer, impressionsTimestamp);
+    // return;
   }
 
   handleClickEvent (item) {
@@ -103,9 +106,8 @@ class SearchResults extends Component {
     if (item.packageOffer) {
       return (
         <div>
-          {this.removeButton(item.id)}
-          <div className='clickable'
-            onClick={() => { console.log('ITEM CLICKED', item) }}
+          <a className='clickable'
+            href={`${baseURL}/hotel/${item.url}`}
           >
             <PackageTile
               key={item.packageOffer.id}
@@ -115,7 +117,7 @@ class SearchResults extends Component {
               removeTile={removeTile}
               item={item}
             />
-          </div>
+          </a>
         </div>
       );
     } else if (item.type === 'tile') {
@@ -123,25 +125,23 @@ class SearchResults extends Component {
       if (item.tile.type === 'article' && contentExists) {
         return (
           <div>
-            {this.removeButton(item.id)}
-            <div className='clickable'
-              onClick={() => { console.log('ITEM CLICKED', item); }}
+            <a className='clickable'
+              href={`${baseURL}/article/${item.url}`}
             >
               <ArticleTile
                 {...item}
               />
-            </div>
+            </a>
           </div>
         );
       } else if (item.tile.type === 'destination' && contentExists) {
         return (
           <div className='shadowHover'>
-            {this.removeButton(item.id)}
-            <div className='clickable'
-              onClick={() => { console.log('ITEM CLICKED', item); }}
+            <a className='clickable'
+              href={`${baseURL}/destination/${item.url}`}
             >
               <DestinationTile {...item} />
-            </div>
+            </a>
           </div>
         );
       }
@@ -187,7 +187,6 @@ class SearchResults extends Component {
   }
 
   render () {
-    console.log('PROPS', this.props);
     const {
       searchComplete,
       displayedItems: items
@@ -202,6 +201,7 @@ class SearchResults extends Component {
     const gridStyle = searchComplete && searchItems.length === 0 ? hideGridStyle : showGridStyle;
     return (
       <div>
+        <div className='feed-end-message'>{`Thomas Cook Holidays in Spain for 2 weeks from July 5th`}</div>
         <div style={gridStyle}>
           <Masonry
             elementType={'div'}
