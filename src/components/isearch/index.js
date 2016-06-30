@@ -195,7 +195,7 @@ class SearchResults extends Component {
     const gridStyle = searchComplete && searchItems.length === 0 ? hideGridStyle : showGridStyle;
     return (
       <div className={containerStyle}>
-        <div className='feed-end-message'>{`Thomas Cook Holidays in Spain for 2 weeks from July 5th`}</div>
+        <div className='feed-end-message'>{`Find a holiday with Thomas Cook in Spain for 2 weeks from July 5th`}</div>
         <div style={gridStyle}>
           <Masonry
             elementType={'div'}

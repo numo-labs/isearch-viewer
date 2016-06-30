@@ -15,6 +15,11 @@
   src: url('../../../fonts/SourceSansPro-SemiBold.otf');
 }
 
+@font-face {
+  font-family: TCScript;
+  src: url('../../../fonts/Thomas_Script_1_5_BASE.otf');
+}
+
 .grid {
   margin: 0 auto;
   margin-bottom: 2em;
@@ -77,7 +82,7 @@
   margin: 10px 5px;
   position: relative;
   font-family: SourceSansSemiBold;
-  font-size: 1.4em;
+  font-size: 1.6em;
   text-align: center;
 }
 

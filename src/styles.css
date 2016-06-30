@@ -1,0 +1,35 @@
+@font-face {
+  font-family: TCScript;
+  src: url('../fonts/Thomas_Script_1_5_BASE.otf');
+}
+
+body {
+  margin: 0;
+  background-color: #e46f6f;
+  margin-bottom: 2em;
+}
+
+.headerTitle, .title {
+  text-align: center;
+  margin: 1em;
+}
+
+.headerTitle {
+  font-family: TCScript;
+  font-size: 4em;
+}
+
+.title {
+  font-family: sans-serif;
+  font-size: 2em;
+}
+
+.app-container {
+  height: 50vh;
+  overflow-y: scroll;
+}
+
+.post {
+  width: 75%;
+  margin: 3em auto;
+}
