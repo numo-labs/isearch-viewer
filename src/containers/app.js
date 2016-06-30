@@ -1,5 +1,5 @@
 // npm
-import React, { Component } from 'react';
+import React, { Component, PropTypes } from 'react';
 import { bindActionCreators } from 'redux';
 import { Provider } from 'react-redux';
 // components
@@ -17,7 +17,7 @@ const actionCreatorBinder = actions => bindActionCreators(actions, store.dispatc
 export default class Root extends Component {
 
   componentWillMount () {
-    this.socket = websocketService.initialise(actionCreatorBinder, this.props.tags);
+    this.socket = websocketService.initialise(actionCreatorBinder, this.props.tags, this.props.searchOptions);
   }
 
   componentWilUnmount () {
@@ -27,8 +27,20 @@ export default class Root extends Component {
   render () {
     return (
       <Provider store={store}>
-        <ISearch/>
+        <ISearch containerStyle={this.props.containerStyle}/>
       </Provider>
     );
   }
 }
+
+Root.propTypes = {
+  containerStyle: PropTypes.obj,
+  searchOptions: React.PropTypes.shape({
+    numberOfChildren: PropTypes.number,
+    numberOfAdults: PropTypes.number,
+    childAges: PropTypes.array,
+    departureAirport: PropTypes.string,
+    durationWeeks: PropTypes.number
+  }),
+  tags: PropTypes.array
+};

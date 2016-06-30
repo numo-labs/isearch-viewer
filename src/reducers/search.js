@@ -5,7 +5,6 @@ import {
   BUSY_SEARCHING,
   TAG_REMOVE_TAG,
   TILES_REMOVE_TILE,
-  SET_SEARCH_STRING,
   SEARCH_ERROR,
   CLEAR_SEARCH_STRING,
   SAVE_SEARCH_RESULT_ID,
@@ -15,7 +14,8 @@ import {
   CLEAR_FEED,
   UPDATE_DISPLAYED_ITEMS,
   SEARCH_COMPLETE,
-  TAG_ADD_TAGS
+  TAG_ADD_TAGS,
+  SET_SEARCH_OPTIONS
 } from '../constants/actionTypes';
 
 import union from 'lodash.union';
@@ -35,14 +35,6 @@ export const initialState = {
   error: '',
   searchComplete: false, // set to false until a message is recieved from the web socket channel
   feedEnd: false,
-  numberOfChildren: '0',
-  numberOfAdults: '2',
-  childAge1: '2 Barns alder',
-  childAge2: '4 Barns alder',
-  childAge3: '0 Barns alder',
-  childAge4: '0 Barns alder',
-  departureAirport: 'Copenhagen - CPH',
-  duration: '1 uge',
   departureDate: departOnFriday(moment().add(3, 'months')).format('YYYY-MM-DD'),
   passengerBirthdays: [],
 };
@@ -95,6 +87,11 @@ export default function search (state = initialState, action) {
       return {
         ...state,
         tags: action.tags
+      };
+    case SET_SEARCH_OPTIONS:
+      return {
+        ...state,
+        ...action.searchOptions
       };
     case SAVE_SEARCH_RESULT_ID:
       return {

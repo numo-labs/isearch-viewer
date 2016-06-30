@@ -17,20 +17,16 @@ export function formatQuery (store) {
       tags,
       numberOfChildren,
       numberOfAdults,
-      childAge1,
-      childAge2,
-      childAge3,
-      childAge4,
+      childAges,
       departureDate,
-      duration,
+      durationWeeks,
       departureAirport
     }
   } = store;
-  const childAgeArray = [childAge1, childAge2, childAge3, childAge4];
   const formattedTags = formatTags(tags);
-  const passengers = combinePassengersForQuery(childAgeArray, numberOfChildren, numberOfAdults);
+  const passengers = combinePassengersForQuery(childAges, numberOfChildren, numberOfAdults);
   const departureAirports = constructDepartureAirportQuery(departureAirport);
-  const travelPeriod = constructTravelPeriodQuery(departureDate, duration);
+  const travelPeriod = constructTravelPeriodQuery(departureDate, durationWeeks);
   const query = {passengers: passengers, travelPeriod: travelPeriod, departureAirports: departureAirports, ...formattedTags};
   query.related = true;
   return query;
@@ -61,10 +57,10 @@ export function formatTags (tags) {
 */
 
 export function combinePassengersForQuery (childAgeArray, numberOfChildren, numberOfAdults) {
-  const slicedChildAgeArray = childAgeArray.slice(0, Number(numberOfChildren));
+  const slicedChildAgeArray = childAgeArray.slice(0, numberOfChildren);
   const childPassengers = slicedChildAgeArray.map(slicedChildAge => {
     const date = new Date();
-    const year = date.getFullYear() - Number(slicedChildAge.split(' ')[0]);
+    const year = date.getFullYear() - slicedChildAge;
     const month = ('0' + (date.getMonth() + 1)).slice(-2);
     const day = ('0' + date.getDate()).slice(-2);
     return ({birthday: `${year}-${month}-${day}`});
@@ -86,7 +82,7 @@ export function combinePassengersForQuery (childAgeArray, numberOfChildren, numb
 */
 
 export function constructTravelPeriodQuery (departureDate, duration) {
-  const nights = (Number(duration.split(' ')[0]) * 7);
+  const nights = duration * 7;
   const travelPeriod = {
     departureBetween: [departureDate],
     nights: [nights]

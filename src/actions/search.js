@@ -12,7 +12,8 @@ import {
   CLEAR_FEED,
   UPDATE_DISPLAYED_ITEMS,
   SEARCH_COMPLETE,
-  TAG_ADD_TAGS
+  TAG_ADD_TAGS,
+  SET_SEARCH_OPTIONS
 } from '../constants/actionTypes';
 
 import * as graphqlService from '../services/graphql';
@@ -287,4 +288,15 @@ export function saveSearchResult (result) {
 
 export function updateDisplayedItems (items) {
   return { type: UPDATE_DISPLAYED_ITEMS, items };
+}
+
+/**
+* Action to save the search options (duration, number of adults etc) to the reducer state
+*/
+
+export function setSearchOptions (searchOptions) {
+  return {
+    type: SET_SEARCH_OPTIONS,
+    searchOptions
+  };
 }

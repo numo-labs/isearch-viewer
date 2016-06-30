@@ -97,10 +97,7 @@ class SearchResults extends Component {
     const {
       onYesFilter,
       totalPassengers,
-      changeRoute,
-      viewedArticles,
-      removeTile,
-      addSingleTag
+      removeTile
     } = this.props;
 
     if (item.packageOffer) {
@@ -189,18 +186,15 @@ class SearchResults extends Component {
   render () {
     const {
       searchComplete,
-      displayedItems: items
+      displayedItems: items,
+      containerStyle
     } = this.props;
     const searchItems = items.filter(item => !item.related);
-    const hideGridStyle = {
-      minHeight: '0'
-    };
-    const showGridStyle = {
-      minHeight: '80vh'
-    };
+    const hideGridStyle = { minHeight: '0' };
+    const showGridStyle = { minHeight: '80vh' };
     const gridStyle = searchComplete && searchItems.length === 0 ? hideGridStyle : showGridStyle;
     return (
-      <div>
+      <div className={containerStyle}>
         <div className='feed-end-message'>{`Thomas Cook Holidays in Spain for 2 weeks from July 5th`}</div>
         <div style={gridStyle}>
           <Masonry
@@ -221,7 +215,7 @@ class SearchResults extends Component {
 SearchResults.propTypes = {
   onYesFilter: PropTypes.func,
   onFilterClick: PropTypes.func,
-  items: PropTypes.array,
+  displayedItems: PropTypes.array,
   setHotelPage: PropTypes.func,
   totalPassengers: PropTypes.number,
   // resultId: PropTypes.string,
@@ -230,7 +224,8 @@ SearchResults.propTypes = {
   removeTile: PropTypes.func,
   addSingleTag: PropTypes.func,
   searchComplete: PropTypes.bool,
-  feedEnd: PropTypes.bool
+  feedEnd: PropTypes.bool,
+  containerStyle: PropTypes.obj
 };
 
 export default SearchResults;
