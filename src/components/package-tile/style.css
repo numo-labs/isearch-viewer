@@ -1,0 +1,134 @@
+@font-face {
+  font-family: SourceSansSemiBold;
+  src: url('../../../fonts/SourceSansPro-SemiBold.otf');
+}
+
+@font-face {
+  font-family: SourceSansRegular;
+  src: url('../../../fonts/SourceSansPro-Regular.otf');
+}
+
+@font-face {
+  font-family: SourceSansLight;
+  src: url('../../../fonts/SourceSansPro-Light.otf');
+}
+
+@font-face {
+  font-family: ThomasHeadlineBold;
+  src: url('../../../fonts/ThomasHeadline-Bold.otf');
+}
+
+.routerLink,
+.routerLink:hover {
+  color: initial;
+  text-decoration: initial;
+}
+
+.packageContainer {
+  width: 100%;
+  cursor: pointer;
+}
+  .labelVisible {
+    color: #ffffff;
+    position: absolute;
+    z-index: 10;
+    display: inline-block;
+    background-color: #444f51;
+    padding-left: 0.5rem;
+    padding-right: 0.5rem;
+    top: 1.5em;
+    font-size: 1.4rem;
+    padding-bottom: 0.2rem;
+    padding-top: 0.1rem;
+    font-family: SourceSansLight;
+    opacity: 0.9;
+  }
+
+  .labelHidden {
+    display: none;
+  }
+
+  .packageImage {
+    height: 200px;
+    position: relative;
+    width: 375px;
+  }
+    .mintBar {
+      background-color: rgba(109,180,169, 0.7);
+      position: absolute;
+      width: inherit;
+      top: 12.5em;
+      height: 25px;
+    }
+
+  .descriptionContainer {
+    padding: 10px;
+    padding-bottom: 15px;
+    background-color: #ffffff;
+  }
+    .topContainer {
+
+    }
+      .packageTitle {
+        font-family: ThomasHeadlineBold;
+        font-size: 1.8rem;
+      }
+      .packageSubtitle {
+        font-family: SourceSansLight;
+        font-size: 1.6rem;
+        color: #939393;
+      }
+      .heartsContainer {
+        display: inline-block;
+        padding-top: 5px;
+      }
+        .heart {
+          height: 15px;
+          width: 20px;
+          padding: 2px;
+        }
+
+    .bottomContainer {
+      margin-top: 5px;
+    }
+      .descriptionRow {
+        width: 100%;
+        line-height: 1.5em;
+      }
+        .date {
+         display: inline-block;
+         font-family: SourceSansLight;
+         font-size: 1.1em;
+         color: #7e7e7e;
+         line-height: 1.5em;
+        }
+        .nights {
+          font-family: SourceSansLight;
+          font-size: 1.1em;
+          color: #7e7e7e;
+          display: inline-block;
+        }
+        .price {
+         display: inline-block;
+         position: absolute;
+         right: 20px;
+         font-size: 1.5em;
+         color:  #DC3763;
+         font-family: SourceSansSemiBold;
+        }
+        .discountPrice {
+          text-decoration: line-through;
+          display: inline-block;
+          position: absolute;
+          right: 20px;
+          font-size: 1.1em;
+          color: #7e7e7e;
+          font-family: SourceSansLight;
+        }
+
+
+  @media (max-width: 325px) {
+   .packageImage {
+     width: 305px;
+   }
+  }

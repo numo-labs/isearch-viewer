@@ -1,0 +1,27 @@
+// search
+export const START_SEARCH = 'START_SEARCH';
+export const BUSY_SEARCHING = 'BUSY_SEARCHING';
+export const SAVE_SEARCH_RESULT_ID = 'SAVE_SEARCH_RESULT_ID';
+export const SAVE_BUCKET_ID = 'SAVE_BUCKET_ID';
+export const RECEIVE_SEARCH_RESULT = 'RECEIVE_SEARCH_RESULT';
+export const RECEIVE_RELATED_RESULT = 'RECEIVE_RELATED_RESULT';
+export const CLEAR_SEARCH_STRING = 'CLEAR_SEARCH_STRING';
+export const CLEAR_FEED = 'CLEAR_FEED';
+export const UPDATE_DISPLAYED_ITEMS = 'UPDATE_DISPLAYED_ITEMS';
+export const SEARCH_COMPLETE = 'SEARCH_COMPLETE';
+
+// tiles and tags
+export const TAG_ADD_SINGLE_TAG = 'TAG_ADD_SINGLE_TAG';
+export const TAG_ADD_TAGS = 'TAG_ADD_TAGS';
+
+// errors
+export const SEARCH_ERROR = 'SEARCH_ERROR';
+
+// travel info
+export const SET_SEARCH_OPTIONS = 'SET_SEARCH_OPTIONS';
+
+// web sockets
+export const SAVE_SOCKET_CONNECTION_ID = 'SAVE_SOCKET_CONNECTION_ID';
+
+// fingerprint
+export const SET_FINGERPRINT = 'SET_FINGERPRINT';
